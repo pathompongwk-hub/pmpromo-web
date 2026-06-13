@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Promo Marketing | Knowledge Hub & Blog</title>
+  <meta name="description" content="อัปเดตเทรนด์การตลาดออนไลน์ เทคนิคทำ SEO การสร้างคอนเทนต์ และระบบ Automation สำหรับธุรกิจ SME">
+  
+  <!-- นำเข้า Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- นำเข้าฟอนต์ Kanit และ Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- นำเข้า Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <!-- ตั้งค่า Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Kanit', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              bg: '#060a06',
+              card: '#080e08',
+              border: '#162016',
+              text: '#e4ede4',
+              muted: '#6e866e',
+              primary: '#3aab22',
+              light: '#6fcc56',
+              primarybg: 'rgba(58,171,34,0.10)'
+            }
+          },
+          backgroundImage: {
+            'grid-pattern': 'linear-gradient(to right, #162016 1px, transparent 1px), linear-gradient(to bottom, #162016 1px, transparent 1px)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-primary selection:text-white">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo (Link back to index) -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="Logo4.png" class="h-16" alt="PM Promo logo">
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8 font-mono text-sm text-brand-muted">
+        <a href="index.html#services" class="hover:text-brand-light transition-colors">Services</a>
+        <a href="index.html#work" class="hover:text-brand-light transition-colors">Work</a>
+        <a href="blog.html" class="text-brand-light transition-colors">Blog</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="index.html#contact" class="hidden md:inline-flex bg-brand-primarybg border border-brand-primary/30 text-brand-light px-5 py-2 rounded-lg font-medium hover:bg-brand-primary hover:text-white transition-all duration-300">
+        Get in touch <i class="ti ti-arrow-up-right ml-1"></i>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-brand-text text-2xl">
+        <i class="ti ti-menu-2"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="pt-20">
+    <!-- Blog Header Section -->
+    <section class="relative pt-20 pb-16 px-6 border-b border-brand-border overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-40 pointer-events-none"></div>
+      
+      <div class="max-w-5xl mx-auto relative z-10">
+        <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Knowledge Hub</div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Articles & Updates</h1>
+        <p class="text-brand-muted text-lg max-w-2xl mb-10">อัปเดตเทรนด์การตลาดออนไลน์ เทคนิคการทำ SEO เคล็ดลับการสร้างคอนเทนต์ และการประยุกต์ใช้ AI เพื่อธุรกิจ</p>
+        
+        <!-- Search & Filter -->
+        <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div class="relative w-full md:w-96">
+            <i class="ti ti-search absolute left-4 top-1/2 -translate-y-1/2 text-brand-muted"></i>
+            <input type="text" placeholder="ค้นหาบทความ..." class="w-full bg-brand-card border border-brand-border text-brand-text pl-11 pr-4 py-3 rounded-xl focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-all placeholder:text-brand-muted/50">
+          </div>
+          
+          <!-- Category Tabs -->
+          <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
+            <button class="bg-brand-primary text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">All Posts</button>
+            <button class="bg-brand-card border border-brand-border text-brand-muted hover:text-brand-light px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors">SEO</button>
+            <button class="bg-brand-card border border-brand-border text-brand-muted hover:text-brand-light px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors">Social Media</button>
+            <button class="bg-brand-card border border-brand-border text-brand-muted hover:text-brand-light px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors">Automation</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="py-16 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="group grid md:grid-cols-2 gap-8 items-center bg-brand-card border border-brand-border rounded-2xl overflow-hidden hover:border-brand-primary/50 transition-colors duration-300">
+          <div class="aspect-video md:aspect-square lg:aspect-video relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop" alt="Featured Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+            <div class="absolute top-4 left-4 bg-brand-primarybg border border-brand-primary/30 text-brand-light px-3 py-1 rounded font-mono text-xs uppercase tracking-wider backdrop-blur-md">Featured</div>
+          </div>
+          <div class="p-8 md:p-12 md:pl-4">
+            <div class="flex items-center gap-4 mb-4 font-mono text-xs text-brand-muted">
+              <span class="flex items-center gap-1"><i class="ti ti-calendar"></i> 14 June 2026</span>
+              <span class="flex items-center gap-1"><i class="ti ti-clock"></i> 5 min read</span>
+            </div>
+            <h2 class="text-3xl font-bold mb-4 group-hover:text-brand-light transition-colors"><a href="#">วิธีวางโครงสร้างเว็บไซต์ให้ SEO ติดหน้าแรก Google อย่างยั่งยืน</a></h2>
+            <p class="text-brand-muted leading-relaxed mb-8">เรียนรู้วิธีการปรับปรุง On-Page SEO และการทำ Information Architecture ที่ช่วยให้ Google Bot เข้าใจเว็บไซต์ของคุณได้ดีขึ้น พร้อมตัวอย่างการจัดทำ Silo Structure...</p>
+            <a href="#" class="inline-flex items-center gap-2 text-brand-primary font-medium hover:text-brand-light transition-colors">
+              Read Article <i class="ti ti-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Posts Grid -->
+    <section class="pb-24 px-6 border-b border-brand-border">
+      <div class="max-w-5xl mx-auto">
+        <h3 class="text-2xl font-bold mb-8">Recent Articles</h3>
+        <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div id="blog-loading" class="col-span-3 text-center py-16 text-brand-muted">
+            <i class="ti ti-loader-2 text-3xl animate-spin block mb-3"></i>
+            <p>กำลังโหลดบทความ...</p>
+          </div>
+          
+          <!-- Post 1 (hidden - will be replaced by JS) -->
+          <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+            <div class="aspect-[16/9] overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Data" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+              <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">Analytics</div>
+            </div>
+            <div class="p-6">
+              <div class="font-mono text-xs text-brand-muted mb-3">10 June 2026</div>
+              <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors"><a href="#">การอ่าน Data จาก Google Search Console สำหรับมือใหม่</a></h4>
+              <p class="text-brand-muted text-sm line-clamp-2 mb-4">ทำความรู้จักกับตัวเลข Impression, Clicks และ CTR พร้อมวิธีวิเคราะห์ว่าคอนเทนต์ไหนควรปรับปรุงต่อ</p>
+              <a href="#" class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors">Read more //</a>
+            </div>
+          </article>
+
+          <!-- Post 2 -->
+          <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+            <div class="aspect-[16/9] overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=800&auto=format&fit=crop" alt="Social Media" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+              <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">Social Media</div>
+            </div>
+            <div class="p-6">
+              <div class="font-mono text-xs text-brand-muted mb-3">05 June 2026</div>
+              <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors"><a href="#">อัปเดต Algorithm Facebook ล่าสุด ทำยังไงให้ Reach ไม่ตก</a></h4>
+              <p class="text-brand-muted text-sm line-clamp-2 mb-4">เจาะลึกการปรับอัลกอริทึมของ Meta ในปีนี้ รูปแบบคอนเทนต์แบบไหนที่ AI ดันโพสต์ให้คนเห็นมากขึ้น</p>
+              <a href="#" class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors">Read more //</a>
+            </div>
+          </article>
+
+          <!-- Post 3 -->
+          <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+            <div class="aspect-[16/9] overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1516110833967-0b5716ca1387?q=80&w=800&auto=format&fit=crop" alt="Automation" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+              <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">Automation</div>
+            </div>
+            <div class="p-6">
+              <div class="font-mono text-xs text-brand-muted mb-3">28 May 2026</div>
+              <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors"><a href="#">สอนใช้ Make.com เชื่อมต่อ LINE OA ตอบแชทลูกค้าอัตโนมัติด้วย AI</a></h4>
+              <p class="text-brand-muted text-sm line-clamp-2 mb-4">ลดภาระแอดมินด้วยการสร้าง Workflow อัตโนมัติ ผสานพลัง OpenAI เข้ากับ LINE Official Account</p>
+              <a href="#" class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors">Read more //</a>
+            </div>
+          </article>
+
+          <!-- Post 4 -->
+          <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+            <div class="aspect-[16/9] overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=800&auto=format&fit=crop" alt="Content" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+              <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">Content</div>
+            </div>
+            <div class="p-6">
+              <div class="font-mono text-xs text-brand-muted mb-3">15 May 2026</div>
+              <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors"><a href="#">Content Funnel คืออะไร? กลยุทธ์เปลี่ยนคนแปลกหน้าเป็นลูกค้าจริง</a></h4>
+              <p class="text-brand-muted text-sm line-clamp-2 mb-4">วิธีวางแผนคอนเทนต์ให้ครอบคลุมตั้งแต่ TOFU, MOFU จนถึง BOFU เพื่อปิดการขายได้อย่างแนบเนียน</p>
+              <a href="#" class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors">Read more //</a>
+            </div>
+          </article>
+
+          <!-- Post 5 -->
+          <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+            <div class="aspect-[16/9] overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" alt="Case Study" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+              <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">Case Study</div>
+            </div>
+            <div class="p-6">
+              <div class="font-mono text-xs text-brand-muted mb-3">02 May 2026</div>
+              <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors"><a href="#">เจาะลึกเบื้องหลัง: ทำ SEO คลินิกทันตกรรมยังไงให้ทราฟฟิกโต 320%</a></h4>
+              <p class="text-brand-muted text-sm line-clamp-2 mb-4">ส่องวิธีวิเคราะห์คีย์เวิร์ดและการทำ Local SEO แบบเจาะจงพื้นที่ ที่ให้ผลลัพธ์คุ้มค่ากว่าการยิงแอด</p>
+              <a href="#" class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors">Read more //</a>
+            </div>
+          </article>
+          
+          <!-- Post 6 -->
+          <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+            <div class="aspect-[16/9] overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop" alt="Design" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+              <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">Design</div>
+            </div>
+            <div class="p-6">
+              <div class="font-mono text-xs text-brand-muted mb-3">20 Apr 2026</div>
+              <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors"><a href="#">จิตวิทยาสีในการออกแบบ Artwork ส่งผลต่อ Conversion อย่างไร?</a></h4>
+              <p class="text-brand-muted text-sm line-clamp-2 mb-4">การเลือกสีปุ่ม Call to Action หรือแบนเนอร์โฆษณา มีผลต่อการตัดสินใจคลิกของลูกค้ามากกว่าที่คุณคิด</p>
+              <a href="#" class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors">Read more //</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-16 flex justify-center gap-2 font-mono">
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-muted hover:text-white hover:border-brand-primary transition-colors"><i class="ti ti-chevron-left"></i></button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-primary text-white border border-brand-primary">1</button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-text hover:text-white hover:border-brand-primary transition-colors">2</button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-text hover:text-white hover:border-brand-primary transition-colors">3</button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-muted hover:text-white hover:border-brand-primary transition-colors"><i class="ti ti-chevron-right"></i></button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Newsletter Section (Bonus for Blog) -->
+    <section class="py-24 px-6 bg-[#030503] relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-brand-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="max-w-2xl mx-auto relative z-10 text-center">
+        <div class="w-16 h-16 bg-brand-card border border-brand-border rounded-2xl flex items-center justify-center text-brand-primary text-3xl mx-auto mb-6">
+          <i class="ti ti-mail-opened"></i>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">ไม่พลาดทุกอัปเดตการตลาด</h3>
+        <p class="text-brand-muted mb-8">สมัครรับจดหมายข่าว (Newsletter) จากเราเพื่อรับทริกการทำการตลาดและอัปเดตใหม่ๆ ส่งตรงถึงอีเมลคุณเดือนละ 2 ครั้ง ไม่มีสแปมแน่นอน</p>
+        <form class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="กรอกอีเมลของคุณ" class="flex-1 bg-brand-card border border-brand-border text-brand-text px-5 py-3.5 rounded-xl focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-all">
+          <button type="submit" class="bg-brand-primary text-white font-medium px-8 py-3.5 rounded-xl hover:bg-brand-light transition-colors whitespace-nowrap">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#030503] border-t border-brand-border pt-16 pb-8 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <!-- Brand Info -->
+        <div class="col-span-1 md:col-span-1">
+          <a href="index.html" class="flex items-center gap-3 group mb-4">
+            <img src="Logo4.png" class="h-14" alt="PM Promo logo">
+          </a>
+          <p class="text-brand-muted text-sm leading-relaxed mb-6">
+            พันธมิตรด้านการตลาดดิจิทัลของคุณ ผสาน AI, Automation และกลยุทธ์ที่ขับเคลื่อนด้วยข้อมูล เพื่อการเติบโตอย่างยั่งยืน
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-facebook"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-line"></i></a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">ผลงานของเรา</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html#work-aw" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Artwork & Design</a></li>
+            <li><a href="index.html#work-video" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Video Production</a></li>
+            <li><a href="index.html#work-seo" class="text-brand-muted hover:text-brand-light text-sm transition-colors">SEO Success Stories</a></li>
+            <li><a href="index.html#services" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Content Marketing</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">บริษัท</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html#about" class="text-brand-muted hover:text-brand-light text-sm transition-colors">เกี่ยวกับเรา</a></li>
+            <li><a href="blog.html" class="text-brand-muted hover:text-brand-light text-sm transition-colors">บทความ (Blog)</a></li>
+            <li><a href="index.html#faq" class="text-brand-muted hover:text-brand-light text-sm transition-colors">คำถามที่พบบ่อย (FAQ)</a></li>
+            <li><a href="index.html#contact" class="text-brand-muted hover:text-brand-light text-sm transition-colors">ติดต่อเรา</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">ติดต่อ</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <i class="ti ti-map-pin text-brand-primary mt-0.5"></i>
+              <span class="text-brand-muted text-sm">กรุงเทพมหานคร, ประเทศไทย</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="ti ti-mail text-brand-primary"></i>
+              <a href="mailto:hello@pmpromo.com" class="text-brand-muted hover:text-brand-light text-sm transition-colors">hello@pmpromo.com</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="ti ti-phone text-brand-primary"></i>
+              <a href="tel:+66800000000" class="text-brand-muted hover:text-brand-light text-sm transition-colors">080-000-0000</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-brand-border flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs font-mono text-brand-muted">© 2026 PM Promo Marketing. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-brand-muted hover:text-brand-light transition-colors">Privacy Policy</a>
+          <a href="#" class="text-xs text-brand-muted hover:text-brand-light transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+const DEFAULT_IMG = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop';
+
+function formatDate(dateStr) {
+  try {
+    return new Date(dateStr).toLocaleDateString('th-TH', { year:'numeric', month:'long', day:'numeric' });
+  } catch { return dateStr || ''; }
+}
+
+function renderPost(p) {
+  return `
+    <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+      <div class="aspect-[16/9] overflow-hidden relative">
+        <img src="${p.thumbnail||DEFAULT_IMG}" alt="${p.title}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" onerror="this.src='${DEFAULT_IMG}'">
+        <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">${p.category||'บทความ'}</div>
+      </div>
+      <div class="p-6">
+        <div class="font-mono text-xs text-brand-muted mb-3">${formatDate(p.date)} · ${p.readtime||''}</div>
+        <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors">${p.title}</h4>
+        <p class="text-brand-muted text-sm line-clamp-2 mb-4">${p.description||p.body?.replace(/[#*`]/g,'').substring(0,120)||''}</p>
+        <span class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors cursor-pointer">Read more //</span>
+      </div>
+    </article>`;
+}
+
+async function loadBlogPosts() {
+  const grid = document.getElementById('blog-grid');
+  const loading = document.getElementById('blog-loading');
+  try {
+    const res = await fetch('/_posts/index.json');
+    if (!res.ok) throw new Error();
+    const posts = await res.json();
+    if (loading) loading.remove();
+    if (!posts.length) {
+      grid.innerHTML = `<div class="col-span-3 text-center py-16 text-brand-muted"><i class="ti ti-pencil-off text-4xl mb-3 block"></i><p>ยังไม่มีบทความ เพิ่มได้ที่ <a href="/admin/#/collections/blog" class="text-brand-light underline">Admin Panel</a></p></div>`;
+      return;
+    }
+    const sorted = posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+    grid.innerHTML = sorted.map(renderPost).join('') + `
+      <div class="col-span-3 mt-8 flex justify-center gap-2 font-mono">
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-muted"><i class="ti ti-chevron-left"></i></button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-primary text-white border border-brand-primary">1</button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-muted"><i class="ti ti-chevron-right"></i></button>
+      </div>`;
+  } catch {
+    if (loading) loading.innerHTML = '<p class="text-brand-muted text-center py-8">ยังไม่มีบทความในระบบ เพิ่มบทความแรกได้ที่ <a href="/admin/#/collections/blog" class="text-brand-light underline">Admin Panel</a></p>';
+  }
+}
+
+async function loadSettings() {
+  try {
+    const res = await fetch('/_data/settings.json');
+    if (!res.ok) return;
+    const s = await res.json();
+    if (s.logo) document.querySelectorAll('[data-logo]').forEach(el => el.src = s.logo);
+  } catch {}
+}
+
+loadBlogPosts();
+loadSettings();
+</script>
+</body>
+</html>
