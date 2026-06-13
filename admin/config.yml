@@ -13,13 +13,13 @@ collections:
         label: "ข้อมูลทั่วไป"
         file: "_data/settings.json"
         fields:
-          - { label: "โลโก้เว็บ", name: "logo", widget: "image" }
-          - { label: "ชื่อเว็บ", name: "site_name", widget: "string", default: "PM Promo" }
-          - { label: "คำโปรย", name: "tagline", widget: "string" }
-          - { label: "LINE ID", name: "line_id", widget: "string" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Facebook URL", name: "facebook", widget: "string" }
-          - { label: "Tel", name: "tel", widget: "string" }
+          - { label: "โลโก้เว็บ", name: "logo", widget: "image", required: false }
+          - { label: "ชื่อเว็บ", name: "site_name", widget: "string", required: false }
+          - { label: "คำโปรย", name: "tagline", widget: "string", required: false }
+          - { label: "LINE ID", name: "line_id", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+          - { label: "Tel", name: "tel", widget: "string", required: false }
 
   - name: "blog"
     label: "บทความ"
