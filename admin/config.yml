@@ -2,10 +2,25 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
-public_folder: "/images"
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
+  - name: "settings"
+    label: "ตั้งค่าเว็บ"
+    files:
+      - name: "general"
+        label: "ข้อมูลทั่วไป"
+        file: "_data/settings.json"
+        fields:
+          - { label: "โลโก้เว็บ", name: "logo", widget: "image" }
+          - { label: "ชื่อเว็บ", name: "site_name", widget: "string", default: "PM Promo" }
+          - { label: "คำโปรย", name: "tagline", widget: "string" }
+          - { label: "LINE ID", name: "line_id", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Facebook URL", name: "facebook", widget: "string" }
+          - { label: "Tel", name: "tel", widget: "string" }
+
   - name: "blog"
     label: "บทความ"
     folder: "_posts"
@@ -13,16 +28,44 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "หัวข้อ", name: "title", widget: "string" }
-      - { label: "หมวดหมู่", name: "category", widget: "string" }
+      - { label: "หมวดหมู่", name: "category", widget: "select", options: ["SEO / SEM", "Social Media", "Content Marketing", "LINE OA & Chatbot", "AI & Automation"] }
       - { label: "วันที่", name: "date", widget: "datetime" }
-      - { label: "เวลาอ่าน", name: "readtime", widget: "string" }
+      - { label: "เวลาอ่าน", name: "readtime", widget: "string", default: "5 นาที" }
+      - { label: "รูปหน้าปก", name: "thumbnail", widget: "image", required: false }
       - { label: "เนื้อหา", name: "body", widget: "markdown" }
-  - name: "works"
-    label: "ผลงาน"
-    folder: "_works"
+
+  - name: "artworks"
+    label: "ผลงาน Artwork"
+    folder: "_artworks"
+    create: true
+    fields:
+      - { label: "ชื่อผลงาน", name: "title", widget: "string" }
+      - { label: "หมวดหมู่", name: "category", widget: "select", options: ["Social Media Post", "Web Banner", "CI Design", "Infographic", "Poster", "อื่นๆ"] }
+      - { label: "รูปภาพ", name: "image", widget: "image" }
+      - { label: "รายละเอียด", name: "description", widget: "text", required: false }
+      - { label: "ลูกค้า", name: "client", widget: "string", required: false }
+
+  - name: "videos"
+    label: "ผลงาน Video"
+    folder: "_videos"
+    create: true
+    fields:
+      - { label: "ชื่อวิดีโอ", name: "title", widget: "string" }
+      - { label: "หมวดหมู่", name: "category", widget: "select", options: ["วิดีโอโฆษณา", "Reels / TikTok", "YouTube", "Corporate Video", "อื่นๆ"] }
+      - { label: "YouTube/Vimeo URL", name: "video_url", widget: "string" }
+      - { label: "รูป Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "รายละเอียด", name: "description", widget: "text", required: false }
+      - { label: "ลูกค้า", name: "client", widget: "string", required: false }
+
+  - name: "seo_results"
+    label: "ผลงาน SEO"
+    folder: "_seo"
     create: true
     fields:
       - { label: "ชื่อโปรเจกต์", name: "title", widget: "string" }
-      - { label: "หมวดหมู่", name: "category", widget: "string" }
-      - { label: "รายละเอียด", name: "description", widget: "text" }
-      - { label: "รูปภาพ", name: "image", widget: "image", required: false }
+      - { label: "Keyword หลัก", name: "keyword", widget: "string" }
+      - { label: "อันดับก่อน", name: "rank_before", widget: "string" }
+      - { label: "อันดับหลัง", name: "rank_after", widget: "string" }
+      - { label: "% Traffic เพิ่ม", name: "traffic_increase", widget: "string" }
+      - { label: "Screenshot GSC", name: "screenshot", widget: "image", required: false }
+      - { label: "รายละเอียด", name: "description", widget: "text", required: false }
