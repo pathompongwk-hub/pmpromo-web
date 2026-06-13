@@ -2,6 +2,8 @@ backend:
   name: github
   repo: pathompongwk-hub/pmpromo-web
   branch: main
+  base_url: https://pmpromo-web.pathompong-wk.workers.dev
+  auth_endpoint: /auth
 
 media_folder: "images"
 public_folder: "/images"
@@ -11,6 +13,7 @@ collections:
     label: "บทความ"
     folder: "_posts"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "หัวข้อ", name: "title", widget: "string" }
       - { label: "หมวดหมู่", name: "category", widget: "string" }
