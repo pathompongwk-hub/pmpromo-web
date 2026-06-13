@@ -360,42 +360,14 @@
           <p class="text-brand-muted max-w-xl mx-auto">ความรู้ด้าน Digital Marketing, SEO, Chatbot และ AI Automation จากประสบการณ์จริง</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/40 transition-colors group">
-            <span class="text-xs font-mono text-brand-primary bg-brand-primarybg border border-brand-primary/20 px-2 py-1 rounded uppercase tracking-wider">SEO / SEM</span>
-            <h3 class="text-brand-light font-semibold mt-4 mb-2 leading-snug group-hover:text-white transition-colors">10 เทคนิค SEO ปี 2025 ที่นักการตลาดดิจิทัลต้องรู้</h3>
-            <p class="text-brand-muted text-sm leading-relaxed mb-4">Google อัปเดต algorithm บ่อยขึ้น บทความนี้รวม 10 เทคนิคที่ทดสอบจากโปรเจกต์จริงแล้วว่าได้ผล</p>
-            <div class="flex items-center gap-3 text-xs font-mono text-brand-muted/60">
-              <span>12 มิ.ย. 2025</span>
-              <span>·</span>
-              <span>8 นาที</span>
-            </div>
-          </div>
-
-          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/40 transition-colors group">
-            <span class="text-xs font-mono text-brand-primary bg-brand-primarybg border border-brand-primary/20 px-2 py-1 rounded uppercase tracking-wider">LINE OA & Chatbot</span>
-            <h3 class="text-brand-light font-semibold mt-4 mb-2 leading-snug group-hover:text-white transition-colors">สร้าง LINE Chatbot ด้วย Make.com + OpenAI ไม่ต้องเขียน Code</h3>
-            <p class="text-brand-muted text-sm leading-relaxed mb-4">คู่มือ step-by-step ตั้งแต่ตั้งค่า LINE API จนถึง deploy ระบบตอบอัตโนมัติที่ใช้งานได้จริง</p>
-            <div class="flex items-center gap-3 text-xs font-mono text-brand-muted/60">
-              <span>5 มิ.ย. 2025</span>
-              <span>·</span>
-              <span>12 นาที</span>
-            </div>
-          </div>
-
-          <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/40 transition-colors group">
-            <span class="text-xs font-mono text-brand-primary bg-brand-primarybg border border-brand-primary/20 px-2 py-1 rounded uppercase tracking-wider">Social Media</span>
-            <h3 class="text-brand-light font-semibold mt-4 mb-2 leading-snug group-hover:text-white transition-colors">Meta Ads 2025: โครงสร้าง Campaign ที่ให้ ROAS สูงสุด</h3>
-            <p class="text-brand-muted text-sm leading-relaxed mb-4">เจาะลึก Campaign Architecture และ Creative Testing Framework ที่ใช้จริงกับแบรนด์ไทย</p>
-            <div class="flex items-center gap-3 text-xs font-mono text-brand-muted/60">
-              <span>20 พ.ค. 2025</span>
-              <span>·</span>
-              <span>10 นาที</span>
-            </div>
+        <div id="home-blog-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div class="col-span-3 text-center py-10 text-brand-muted">
+            <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>
+            <p class="text-sm">กำลังโหลดบทความ...</p>
           </div>
         </div>
 
-        <div class="text-center">
+        <div id="home-blog-cta" class="text-center hidden">
           <a href="blog.html" class="inline-flex items-center gap-2 bg-brand-primarybg border border-brand-primary/30 text-brand-light px-8 py-3 rounded-xl font-medium hover:bg-brand-primary hover:text-white transition-all duration-300">
             ดูบทความทั้งหมด <i class="ti ti-arrow-right"></i>
           </a>
@@ -577,5 +549,33 @@
     </div>
   </footer>
 
+<script>
+async function loadHomeBlog() {
+  const grid = document.getElementById('home-blog-grid');
+  const cta = document.getElementById('home-blog-cta');
+  try {
+    const res = await fetch('/_posts/index.json');
+    if (!res.ok) throw new Error();
+    const posts = await res.json();
+    if (!posts.length) { grid.innerHTML = ''; return; }
+    const sorted = posts.sort((a,b) => new Date(b.date)-new Date(a.date)).slice(0,3);
+    grid.innerHTML = sorted.map(p => `
+      <div class="bg-brand-card border border-brand-border rounded-2xl p-6 hover:border-brand-primary/40 transition-colors group cursor-pointer" onclick="location.href='blog.html'">
+        <span class="text-xs font-mono text-brand-primary bg-brand-primarybg border border-brand-primary/20 px-2 py-1 rounded uppercase tracking-wider">${p.category||'บทความ'}</span>
+        <h3 class="text-brand-light font-semibold mt-4 mb-2 leading-snug group-hover:text-white transition-colors">${p.title}</h3>
+        <p class="text-brand-muted text-sm leading-relaxed mb-4 line-clamp-2">${p.description||p.body?.replace(/[#*`\[\]]/g,'').substring(0,100)||''}</p>
+        <div class="flex items-center gap-3 text-xs font-mono text-brand-muted/60">
+          <span>${p.date ? new Date(p.date).toLocaleDateString('th-TH',{year:'numeric',month:'short',day:'numeric'}) : ''}</span>
+          ${p.readtime ? `<span>·</span><span>${p.readtime}</span>` : ''}
+        </div>
+      </div>`).join('');
+    cta.classList.remove('hidden');
+  } catch {
+    grid.innerHTML = '';
+    cta.classList.remove('hidden');
+  }
+}
+loadHomeBlog();
+</script>
 </body>
 </html>
