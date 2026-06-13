@@ -104,26 +104,10 @@
       </div>
     </section>
 
-    <!-- Featured Post -->
-    <section class="py-16 px-6">
+    <!-- Featured Post (dynamic) -->
+    <section id="featured-section" class="py-16 px-6 hidden">
       <div class="max-w-5xl mx-auto">
-        <div class="group grid md:grid-cols-2 gap-8 items-center bg-brand-card border border-brand-border rounded-2xl overflow-hidden hover:border-brand-primary/50 transition-colors duration-300">
-          <div class="aspect-video md:aspect-square lg:aspect-video relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop" alt="Featured Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
-            <div class="absolute top-4 left-4 bg-brand-primarybg border border-brand-primary/30 text-brand-light px-3 py-1 rounded font-mono text-xs uppercase tracking-wider backdrop-blur-md">Featured</div>
-          </div>
-          <div class="p-8 md:p-12 md:pl-4">
-            <div class="flex items-center gap-4 mb-4 font-mono text-xs text-brand-muted">
-              <span class="flex items-center gap-1"><i class="ti ti-calendar"></i> 14 June 2026</span>
-              <span class="flex items-center gap-1"><i class="ti ti-clock"></i> 5 min read</span>
-            </div>
-            <h2 class="text-3xl font-bold mb-4 group-hover:text-brand-light transition-colors"><a href="#">วิธีวางโครงสร้างเว็บไซต์ให้ SEO ติดหน้าแรก Google อย่างยั่งยืน</a></h2>
-            <p class="text-brand-muted leading-relaxed mb-8">เรียนรู้วิธีการปรับปรุง On-Page SEO และการทำ Information Architecture ที่ช่วยให้ Google Bot เข้าใจเว็บไซต์ของคุณได้ดีขึ้น พร้อมตัวอย่างการจัดทำ Silo Structure...</p>
-            <a href="#" class="inline-flex items-center gap-2 text-brand-primary font-medium hover:text-brand-light transition-colors">
-              Read Article <i class="ti ti-arrow-right"></i>
-            </a>
-          </div>
-        </div>
+        <div id="featured-post" class="group grid md:grid-cols-2 gap-8 items-center bg-brand-card border border-brand-border rounded-2xl overflow-hidden hover:border-brand-primary/50 transition-colors duration-300"></div>
       </div>
     </section>
 
@@ -353,6 +337,8 @@ function renderPost(p) {
 async function loadBlogPosts() {
   const grid = document.getElementById('blog-grid');
   const loading = document.getElementById('blog-loading');
+  const featuredSection = document.getElementById('featured-section');
+  const featuredPost = document.getElementById('featured-post');
   try {
     const res = await fetch('/_posts/index.json');
     if (!res.ok) throw new Error();
@@ -363,7 +349,32 @@ async function loadBlogPosts() {
       return;
     }
     const sorted = posts.sort((a,b) => new Date(b.date) - new Date(a.date));
-    grid.innerHTML = sorted.map(renderPost).join('') + `
+    const featured = sorted[0];
+    const rest = sorted.slice(1);
+    // Render featured
+    if (featured && featuredSection && featuredPost) {
+      featuredSection.classList.remove('hidden');
+      featuredPost.innerHTML = `
+        <div class="aspect-video md:aspect-square lg:aspect-video relative overflow-hidden">
+          <img src="${featured.thumbnail||'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop'}" alt="${featured.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop'">
+          <div class="absolute top-4 left-4 bg-brand-primarybg border border-brand-primary/30 text-brand-light px-3 py-1 rounded font-mono text-xs uppercase tracking-wider backdrop-blur-md">Featured</div>
+        </div>
+        <div class="p-8 md:p-12 md:pl-4">
+          <div class="flex items-center gap-4 mb-4 font-mono text-xs text-brand-muted">
+            <span class="flex items-center gap-1"><i class="ti ti-calendar"></i> ${formatDate(featured.date)}</span>
+            ${featured.readtime ? `<span class="flex items-center gap-1"><i class="ti ti-clock"></i> ${featured.readtime}</span>` : ''}
+          </div>
+          <h2 class="text-3xl font-bold mb-4 group-hover:text-brand-light transition-colors">${featured.title}</h2>
+          <p class="text-brand-muted leading-relaxed mb-8">${featured.description||featured.body?.replace(/[#*`\[\]]/g,'').substring(0,200)||''}</p>
+          <span class="inline-flex items-center gap-2 text-brand-primary font-medium hover:text-brand-light transition-colors cursor-pointer">Read Article <i class="ti ti-arrow-right"></i></span>
+        </div>`;
+    }
+    // Render rest
+    if (!rest.length) {
+      grid.innerHTML = `<div class="col-span-3 text-center py-8 text-brand-muted text-sm">ยังไม่มีบทความอื่น</div>`;
+      return;
+    }
+    grid.innerHTML = rest.map(renderPost).join('') + `
       <div class="col-span-3 mt-8 flex justify-center gap-2 font-mono">
         <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-muted"><i class="ti ti-chevron-left"></i></button>
         <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-primary text-white border border-brand-primary">1</button>
