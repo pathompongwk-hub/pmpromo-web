@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ผลงาน Artwork — PM Promo</title>
+<link rel="icon" type="image/png" href="Logo4.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Kanit','sans-serif'], mono: ['Space Mono','monospace'] },
+        colors: {
+          brand: { bg:'#060a06', card:'#080e08', border:'#162016', text:'#e4ede4', muted:'#6e866e', primary:'#3aab22', light:'#6fcc56', primarybg:'rgba(58,171,34,0.10)' }
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="bg-brand-bg text-brand-text font-sans antialiased">
+
+<nav class="fixed top-0 w-full z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html"><img id="nav-logo" src="Logo4.png" class="h-12" alt="PM Promo"></a>
+    <div class="hidden md:flex items-center gap-8 font-mono text-sm text-brand-muted">
+      <a href="artwork.html" class="text-brand-light">Artworks</a>
+      <a href="video.html" class="hover:text-brand-light transition-colors">Videos</a>
+      <a href="seo.html" class="hover:text-brand-light transition-colors">SEO Results</a>
+      <a href="blog.html" class="hover:text-brand-light transition-colors">Blog</a>
+    </div>
+    <a href="index.html#contact" class="hidden md:inline-flex bg-brand-primarybg border border-brand-primary/30 text-brand-light px-5 py-2 rounded-lg font-medium hover:bg-brand-primary hover:text-white transition-all duration-300">Get in touch</a>
+  </div>
+</nav>
+
+<div class="pt-16">
+  <div class="relative py-16 px-6 border-b border-brand-border overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern bg-[size:40px_40px] opacity-30"></div>
+    <div class="relative max-w-5xl mx-auto">
+      <div class="font-mono text-brand-primary text-xs tracking-widest uppercase mb-3">// Portfolio</div>
+      <h1 class="text-4xl font-bold text-white mb-3">ผลงาน Artwork</h1>
+      <p class="text-brand-muted">งานออกแบบ Graphic Design, Social Media Content และ Visual Identity</p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    <div class="flex gap-3 flex-wrap mb-10" id="filter-bar">
+      <button onclick="filterArt('all',this)" class="filter-btn active font-mono text-xs px-4 py-2 rounded-full border border-brand-primary/30 bg-brand-primarybg text-brand-light">ทั้งหมด</button>
+      <button onclick="filterArt('Social Media Post',this)" class="filter-btn font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">Social Media</button>
+      <button onclick="filterArt('Web Banner',this)" class="filter-btn font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">Web Banner</button>
+      <button onclick="filterArt('CI Design',this)" class="filter-btn font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">CI Design</button>
+      <button onclick="filterArt('Infographic',this)" class="filter-btn font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">Infographic</button>
+      <button onclick="filterArt('Poster',this)" class="filter-btn font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">Poster</button>
+    </div>
+
+    <div id="art-grid" class="grid grid-cols-2 md:grid-cols-3 gap-5"></div>
+    <div id="empty-state" class="hidden text-center py-20 text-brand-muted">
+      <i class="ti ti-photo-off text-4xl mb-3 block"></i>
+      <p>ยังไม่มีผลงาน Artwork</p>
+      <p class="text-sm mt-1">เพิ่มผลงานได้ที่ <a href="/admin/#/collections/artworks" class="text-brand-light underline">Admin Panel</a></p>
+    </div>
+  </div>
+</div>
+
+<footer class="border-t border-brand-border py-8 px-6 text-center text-brand-muted font-mono text-xs">
+  © 2025 PM Promo Marketing. All rights reserved.
+</footer>
+
+<script>
+let allArtworks = [];
+
+async function loadArtworks() {
+  try {
+    const res = await fetch('/_artworks/index.json');
+    if (!res.ok) throw new Error('no index');
+    allArtworks = await res.json();
+  } catch {
+    allArtworks = window.__ARTWORKS__ || [];
+  }
+  renderArtworks(allArtworks);
+}
+
+function renderArtworks(items) {
+  const grid = document.getElementById('art-grid');
+  const empty = document.getElementById('empty-state');
+  if (!items.length) { grid.classList.add('hidden'); empty.classList.remove('hidden'); return; }
+  grid.classList.remove('hidden'); empty.classList.add('hidden');
+  grid.innerHTML = items.map(item => `
+    <div class="art-item group relative overflow-hidden rounded-2xl border border-brand-border bg-brand-card cursor-pointer hover:border-brand-primary/40 transition-all duration-300" data-category="${item.category||''}">
+      <div class="aspect-square overflow-hidden">
+        <img src="${item.image||'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&auto=format&fit=crop'}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="absolute inset-0 bg-brand-bg/0 group-hover:bg-brand-bg/70 transition-all duration-300 flex items-end">
+        <div class="p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <span class="font-mono text-xs text-brand-primary">${item.category||''}</span>
+          <h3 class="text-white font-semibold mt-1">${item.title}</h3>
+          ${item.client ? `<p class="text-brand-muted text-sm mt-1">${item.client}</p>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterArt(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active','bg-brand-primarybg','border-brand-primary/30','text-brand-light'));
+  btn.classList.add('active','bg-brand-primarybg','border-brand-primary/30','text-brand-light');
+  const filtered = cat === 'all' ? allArtworks : allArtworks.filter(a => a.category === cat);
+  renderArtworks(filtered);
+}
+
+loadArtworks();
+
+async function loadSettings() {
+  try {
+    const res = await fetch('/_data/settings.json');
+    if (!res.ok) return;
+    const s = await res.json();
+    if (s.logo) document.getElementById('nav-logo').src = s.logo;
+  } catch {}
+}
+loadSettings();
+</script>
+</body>
+</html>

@@ -131,9 +131,13 @@
     <section class="pb-24 px-6 border-b border-brand-border">
       <div class="max-w-5xl mx-auto">
         <h3 class="text-2xl font-bold mb-8">Recent Articles</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div id="blog-loading" class="col-span-3 text-center py-16 text-brand-muted">
+            <i class="ti ti-loader-2 text-3xl animate-spin block mb-3"></i>
+            <p>กำลังโหลดบทความ...</p>
+          </div>
           
-          <!-- Post 1 -->
+          <!-- Post 1 (hidden - will be replaced by JS) -->
           <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
             <div class="aspect-[16/9] overflow-hidden relative">
               <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Data" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
@@ -321,5 +325,66 @@
     </div>
   </footer>
 
+<script>
+const DEFAULT_IMG = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop';
+
+function formatDate(dateStr) {
+  try {
+    return new Date(dateStr).toLocaleDateString('th-TH', { year:'numeric', month:'long', day:'numeric' });
+  } catch { return dateStr || ''; }
+}
+
+function renderPost(p) {
+  return `
+    <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+      <div class="aspect-[16/9] overflow-hidden relative">
+        <img src="${p.thumbnail||DEFAULT_IMG}" alt="${p.title}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" onerror="this.src='${DEFAULT_IMG}'">
+        <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">${p.category||'บทความ'}</div>
+      </div>
+      <div class="p-6">
+        <div class="font-mono text-xs text-brand-muted mb-3">${formatDate(p.date)} · ${p.readtime||''}</div>
+        <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors">${p.title}</h4>
+        <p class="text-brand-muted text-sm line-clamp-2 mb-4">${p.description||p.body?.replace(/[#*`]/g,'').substring(0,120)||''}</p>
+        <span class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors cursor-pointer">Read more //</span>
+      </div>
+    </article>`;
+}
+
+async function loadBlogPosts() {
+  const grid = document.getElementById('blog-grid');
+  const loading = document.getElementById('blog-loading');
+  try {
+    const res = await fetch('/_posts/index.json');
+    if (!res.ok) throw new Error();
+    const posts = await res.json();
+    if (loading) loading.remove();
+    if (!posts.length) {
+      grid.innerHTML = `<div class="col-span-3 text-center py-16 text-brand-muted"><i class="ti ti-pencil-off text-4xl mb-3 block"></i><p>ยังไม่มีบทความ เพิ่มได้ที่ <a href="/admin/#/collections/blog" class="text-brand-light underline">Admin Panel</a></p></div>`;
+      return;
+    }
+    const sorted = posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+    grid.innerHTML = sorted.map(renderPost).join('') + `
+      <div class="col-span-3 mt-8 flex justify-center gap-2 font-mono">
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-muted"><i class="ti ti-chevron-left"></i></button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-primary text-white border border-brand-primary">1</button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-card border border-brand-border text-brand-muted"><i class="ti ti-chevron-right"></i></button>
+      </div>`;
+  } catch {
+    if (loading) loading.innerHTML = '<p class="text-brand-muted text-center py-8">ยังไม่มีบทความในระบบ เพิ่มบทความแรกได้ที่ <a href="/admin/#/collections/blog" class="text-brand-light underline">Admin Panel</a></p>';
+  }
+}
+
+async function loadSettings() {
+  try {
+    const res = await fetch('/_data/settings.json');
+    if (!res.ok) return;
+    const s = await res.json();
+    if (s.logo) document.querySelectorAll('[data-logo]').forEach(el => el.src = s.logo);
+  } catch {}
+}
+
+loadBlogPosts();
+loadSettings();
+</script>
 </body>
 </html>
