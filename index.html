@@ -57,7 +57,7 @@
     <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3 group">
-        <img src="Logo4.png" class="h-16" alt="PM Promo logo">
+        <img id="nav-logo" src="Logo4.png" class="h-16" alt="PM Promo logo">
       </a>
 
       <!-- Desktop Links -->
@@ -139,8 +139,60 @@
       </div>
     </section>
 
-    <!-- Portfolio: Artworks (AW) -->
+    <!-- Portfolio: Dynamic from CMS -->
     <section id="work-aw" class="py-24 px-6 border-b border-brand-border">
+      <div class="max-w-5xl mx-auto">
+        <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Our Work</div>
+        <div class="flex items-end justify-between mb-12 flex-wrap gap-4">
+          <h2 class="text-3xl md:text-4xl font-bold">ผลงานที่เลือกแล้ว</h2>
+          <div class="flex gap-2" id="work-tabs">
+            <button onclick="switchWork('artworks',this)" class="work-tab active font-mono text-xs px-4 py-2 rounded-full border border-brand-primary/30 bg-brand-primarybg text-brand-light transition-colors">Artwork</button>
+            <button onclick="switchWork('videos',this)" class="work-tab font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">Video</button>
+            <button onclick="switchWork('seo',this)" class="work-tab font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">SEO</button>
+          </div>
+        </div>
+
+        <!-- Artwork Grid -->
+        <div id="work-artworks" class="work-panel">
+          <div id="aw-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="col-span-3 text-center py-12 text-brand-muted text-sm">
+              <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
+            </div>
+          </div>
+          <div class="mt-8 text-right">
+            <a href="artwork.html" class="inline-flex items-center gap-2 font-mono text-sm text-brand-primary hover:text-brand-light transition-colors">ดูทั้งหมด <i class="ti ti-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Video Grid -->
+        <div id="work-videos" class="work-panel hidden">
+          <div id="vid-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="col-span-2 text-center py-12 text-brand-muted text-sm">
+              <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
+            </div>
+          </div>
+          <div class="mt-8 text-right">
+            <a href="video.html" class="inline-flex items-center gap-2 font-mono text-sm text-brand-primary hover:text-brand-light transition-colors">ดูทั้งหมด <i class="ti ti-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- SEO Grid -->
+        <div id="work-seo" class="work-panel hidden">
+          <div id="seo-grid-home" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="col-span-3 text-center py-12 text-brand-muted text-sm">
+              <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
+            </div>
+          </div>
+          <div class="mt-8 text-right">
+            <a href="seo.html" class="inline-flex items-center gap-2 font-mono text-sm text-brand-primary hover:text-brand-light transition-colors">ดูทั้งหมด <i class="ti ti-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-24 px-6 border-b border-brand-border">
+
       <div class="max-w-5xl mx-auto">
         <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Visual Identity</div>
         <h2 class="text-3xl md:text-4xl font-bold mb-12">Artwork & Graphic Design</h2>
@@ -178,175 +230,6 @@
               <h3 class="text-white font-medium">สรุปข้อมูลสำหรับเพจให้ความรู้</h3>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio: Videos -->
-    <section id="work-video" class="py-24 px-6 border-b border-brand-border bg-[#030503]">
-      <div class="max-w-5xl mx-auto">
-        <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Motion & Storytelling</div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-12">Video Production</h2>
-
-        <!-- เปลี่ยนเป็น Grid 3 คอลัมน์ เพื่อรองรับสัดส่วนที่ต่างกัน -->
-        <div class="grid md:grid-cols-3 gap-8 items-start">
-          
-          <!-- Video 1: แนวนอน (16:9) กินพื้นที่ 2 คอลัมน์ -->
-          <div class="md:col-span-2 group cursor-pointer">
-            <div class="relative aspect-video bg-brand-card rounded-2xl overflow-hidden border border-brand-border mb-4">
-              <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1200&auto=format&fit=crop" alt="ผลงานวิดีโอโฆษณา" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-500">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-16 h-16 bg-brand-primary/90 text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(58,171,34,0.3)]">
-                  <i class="ti ti-player-play-filled text-2xl"></i>
-                </div>
-              </div>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 group-hover:text-brand-light transition-colors">Corporate Video (16:9)</h3>
-            <p class="text-brand-muted text-sm">ถ่ายทำและตัดต่อวิดีโอพรีเซนต์องค์กร เล่าเรื่องราวความน่าเชื่อถือและความเป็นมืออาชีพ</p>
-          </div>
-
-          <!-- Video 2: แนวตั้ง (9:16) กินพื้นที่ 1 คอลัมน์ -->
-          <div class="md:col-span-1 group cursor-pointer">
-            <div class="relative aspect-[9/16] bg-brand-card rounded-2xl overflow-hidden border border-brand-border mb-4">
-              <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=600&auto=format&fit=crop" alt="ผลงานวิดีโอสั้น TikTok" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-500">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-14 h-14 bg-brand-primary/90 text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(58,171,34,0.3)]">
-                  <i class="ti ti-player-play-filled text-xl"></i>
-                </div>
-              </div>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 group-hover:text-brand-light transition-colors">Shorts / Reels (9:16)</h3>
-            <p class="text-brand-muted text-sm">คิดสคริปต์ ถ่ายทำ และตัดต่อวิดีโอแนวตั้ง เน้นยอด View และ Engagement ทันที</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio: SEO & Search Console -->
-    <section id="work-seo" class="py-24 px-6 border-b border-brand-border relative overflow-hidden">
-      <!-- Glow background -->
-      <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div class="max-w-5xl mx-auto relative z-10">
-        <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Data-Driven Results</div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">SEO Success Stories</h2>
-        <p class="text-brand-muted mb-12 max-w-2xl">เราไม่เพียงแค่ทำเนื้อหา แต่เราวัดผลได้จริง ข้อมูลด้านล่างคือผลลัพธ์การเติบโตของแต่ละธุรกิจผ่าน <b>Google Search Console</b> หลังจากปรับแต่งโครงสร้างเว็บและทำ SEO กับเราในระยะเวลา 6 เดือน</p>
-
-        <!-- Business Case Studies Grid -->
-        <div class="grid md:grid-cols-3 gap-6">
-          
-          <!-- Case 1: ธุรกิจรับสร้างบ้าน -->
-          <div class="bg-[#1e1e24] border border-[#303036] rounded-2xl overflow-hidden flex flex-col shadow-xl hover:-translate-y-1 transition-transform duration-300">
-            <div class="p-6 flex-grow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <div class="text-[#8ab4f8] font-mono text-xs mb-1">Construction / B2C</div>
-                  <h3 class="text-white font-semibold text-lg">ธุรกิจรับสร้างบ้าน</h3>
-                </div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="GSC" class="w-4 h-4 grayscale opacity-50">
-              </div>
-              <p class="text-[#9aa0a6] text-xs mb-6 h-12">ปรับโครงสร้างเว็บและเขียนบทความ SEO ดึงดูดลูกค้าที่กำลังหาข้อมูลสร้างบ้าน</p>
-              
-              <div class="mb-2">
-                <div class="text-[#9aa0a6] text-xs mb-1">Total Clicks (6 Months)</div>
-                <div class="text-3xl font-sans text-white mb-2">125K <span class="text-sm font-normal text-[#81c995] ml-1">+450% <i class="ti ti-arrow-up text-xs"></i></span></div>
-                <div class="bg-brand-card border border-brand-border p-3 rounded-lg flex items-center justify-between">
-                  <span class="text-xs text-brand-text truncate mr-2">"รับสร้างบ้าน"</span>
-                  <span class="text-brand-light font-mono text-xs whitespace-nowrap">Rank #1</span>
-                </div>
-              </div>
-            </div>
-            <!-- Mini Chart -->
-            <div class="h-20 w-full bg-[#2d2d33]/50 relative border-t border-[#303036]">
-              <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 40">
-                <path d="M0,40 L0,35 C20,35 30,25 50,20 C70,15 80,10 100,5 L100,40 Z" fill="url(#grad-seo1)" opacity="0.3"></path>
-                <path d="M0,35 C20,35 30,25 50,20 C70,15 80,10 100,5" fill="none" stroke="#8ab4f8" stroke-width="2" stroke-linecap="round"></path>
-                <circle cx="100" cy="5" r="2" fill="#8ab4f8" class="animate-pulse"></circle>
-                <defs>
-                  <linearGradient id="grad-seo1" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style="stop-color:#8ab4f8;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#202124;stop-opacity:0" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Case 2: คลินิกทันตกรรม -->
-          <div class="bg-[#1e1e24] border border-[#303036] rounded-2xl overflow-hidden flex flex-col shadow-xl hover:-translate-y-1 transition-transform duration-300">
-            <div class="p-6 flex-grow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <div class="text-[#c58af9] font-mono text-xs mb-1">Health / Local</div>
-                  <h3 class="text-white font-semibold text-lg">คลินิกทันตกรรม</h3>
-                </div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="GSC" class="w-4 h-4 grayscale opacity-50">
-              </div>
-              <p class="text-[#9aa0a6] text-xs mb-6 h-12">ทำ Local SEO และเพิ่มหน้าบริการ (Service Pages) เพื่อให้ติดการค้นหาในพื้นที่</p>
-              
-              <div class="mb-2">
-                <div class="text-[#9aa0a6] text-xs mb-1">Total Impressions (6 Months)</div>
-                <div class="text-3xl font-sans text-white mb-2">1.2M <span class="text-sm font-normal text-[#81c995] ml-1">+320% <i class="ti ti-arrow-up text-xs"></i></span></div>
-                <div class="bg-brand-card border border-brand-border p-3 rounded-lg flex items-center justify-between">
-                  <span class="text-xs text-brand-text truncate mr-2">"คลินิกทำฟัน ใกล้ฉัน"</span>
-                  <span class="text-brand-light font-mono text-xs whitespace-nowrap">Rank #2</span>
-                </div>
-              </div>
-            </div>
-            <!-- Mini Chart -->
-            <div class="h-20 w-full bg-[#2d2d33]/50 relative border-t border-[#303036]">
-              <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 40">
-                <path d="M0,40 L0,30 L20,25 L40,28 L60,15 L80,18 L100,5 L100,40 Z" fill="url(#grad-seo2)" opacity="0.2"></path>
-                <path d="M0,30 L20,25 L40,28 L60,15 L80,18 L100,5" fill="none" stroke="#c58af9" stroke-width="2" stroke-linejoin="round"></path>
-                <circle cx="100" cy="5" r="2" fill="#c58af9" class="animate-pulse"></circle>
-                <defs>
-                  <linearGradient id="grad-seo2" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style="stop-color:#c58af9;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#202124;stop-opacity:0" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Case 3: โปรแกรมบัญชีออนไลน์ -->
-          <div class="bg-[#1e1e24] border border-[#303036] rounded-2xl overflow-hidden flex flex-col shadow-xl hover:-translate-y-1 transition-transform duration-300">
-            <div class="p-6 flex-grow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <div class="text-[#81c995] font-mono text-xs mb-1">Software / B2B</div>
-                  <h3 class="text-white font-semibold text-lg">โปรแกรมบัญชีออนไลน์</h3>
-                </div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="GSC" class="w-4 h-4 grayscale opacity-50">
-              </div>
-              <p class="text-[#9aa0a6] text-xs mb-6 h-12">สร้าง Content Hub แนะนำความรู้ภาษี เพื่อดึงดูดเจ้าของกิจการเข้ามาใช้งาน</p>
-              
-              <div class="mb-2">
-                <div class="text-[#9aa0a6] text-xs mb-1">Average CTR (6 Months)</div>
-                <div class="text-3xl font-sans text-white mb-2">10.4% <span class="text-sm font-normal text-[#81c995] ml-1">+2.1% <i class="ti ti-arrow-up text-xs"></i></span></div>
-                <div class="bg-brand-card border border-brand-border p-3 rounded-lg flex items-center justify-between">
-                  <span class="text-xs text-brand-text truncate mr-2">"โปรแกรมบัญชี ออนไลน์"</span>
-                  <span class="text-brand-light font-mono text-xs whitespace-nowrap">Rank #1</span>
-                </div>
-              </div>
-            </div>
-            <!-- Mini Chart -->
-            <div class="h-20 w-full bg-[#2d2d33]/50 relative border-t border-[#303036]">
-              <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 40">
-                <path d="M0,40 L0,38 C40,35 60,15 100,5 L100,40 Z" fill="url(#grad-seo3)" opacity="0.2"></path>
-                <path d="M0,38 C40,35 60,15 100,5" fill="none" stroke="#81c995" stroke-width="2" stroke-linecap="round"></path>
-                <circle cx="100" cy="5" r="2" fill="#81c995" class="animate-pulse"></circle>
-                <defs>
-                  <linearGradient id="grad-seo3" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style="stop-color:#81c995;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#202124;stop-opacity:0" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -454,11 +337,11 @@
             <i class="ti ti-brand-line text-xl"></i>
             <span class="font-medium">LINE OA</span>
           </a>
-          <a href="#" class="flex items-center justify-center gap-2 bg-brand-card border border-brand-border hover:border-white hover:text-white rounded-xl px-8 py-4 transition-all duration-300">
+          <a id="contact-email-btn" href="#" class="flex items-center justify-center gap-2 bg-brand-card border border-brand-border hover:border-white hover:text-white rounded-xl px-8 py-4 transition-all duration-300">
             <i class="ti ti-mail text-xl text-brand-primary"></i>
             <span class="font-medium">Email</span>
           </a>
-          <a href="#" class="flex items-center justify-center gap-2 bg-brand-card border border-brand-border hover:border-[#1877F2] hover:text-[#1877F2] rounded-xl px-8 py-4 transition-all duration-300">
+          <a id="contact-fb-btn" href="#" class="flex items-center justify-center gap-2 bg-brand-card border border-brand-border hover:border-[#1877F2] hover:text-[#1877F2] rounded-xl px-8 py-4 transition-all duration-300">
             <i class="ti ti-brand-facebook text-xl"></i>
             <span class="font-medium">Facebook</span>
           </a>
@@ -475,19 +358,19 @@
         <!-- Brand Info -->
         <div class="col-span-1 md:col-span-1">
           <a href="#" class="flex items-center gap-3 group mb-4">
-            <img src="Logo4.png" class="h-14" alt="PM Promo logo">
+            <img id="footer-logo" src="Logo4.png" class="h-14" alt="PM Promo logo">
           </a>
           <p class="text-brand-muted text-sm leading-relaxed mb-6">
             พันธมิตรด้านการตลาดดิจิทัลของคุณ ผสาน AI, Automation และกลยุทธ์ที่ขับเคลื่อนด้วยข้อมูล เพื่อการเติบโตอย่างยั่งยืน
           </p>
           <div class="flex gap-4">
-            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors">
+            <a id="footer-fb" href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors">
               <i class="ti ti-brand-facebook"></i>
             </a>
-            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors">
+            <a id="footer-ig" href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors">
               <i class="ti ti-brand-instagram"></i>
             </a>
-            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors">
+            <a id="footer-line" href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors">
               <i class="ti ti-brand-line"></i>
             </a>
           </div>
@@ -518,18 +401,18 @@
         <!-- Contact Info -->
         <div>
           <h4 class="text-white font-semibold mb-4">ติดต่อ</h4>
-          <ul class="space-y-4">
+          <ul class="space-y-4" id="footer-contact">
             <li class="flex items-start gap-3">
               <i class="ti ti-map-pin text-brand-primary mt-0.5"></i>
               <span class="text-brand-muted text-sm">กรุงเทพมหานคร, ประเทศไทย</span>
             </li>
             <li class="flex items-center gap-3">
               <i class="ti ti-mail text-brand-primary"></i>
-              <a href="mailto:hello@pmpromo.com" class="text-brand-muted hover:text-brand-light text-sm transition-colors">hello@pmpromo.com</a>
+              <a id="footer-email" href="mailto:hello@pmpromo.com" class="text-brand-muted hover:text-brand-light text-sm transition-colors">hello@pmpromo.com</a>
             </li>
             <li class="flex items-center gap-3">
               <i class="ti ti-phone text-brand-primary"></i>
-              <a href="tel:+66800000000" class="text-brand-muted hover:text-brand-light text-sm transition-colors">080-000-0000</a>
+              <a id="footer-tel" href="tel:+66800000000" class="text-brand-muted hover:text-brand-light text-sm transition-colors">080-000-0000</a>
             </li>
           </ul>
         </div>
@@ -576,6 +459,134 @@ async function loadHomeBlog() {
   }
 }
 loadHomeBlog();
+
+const workCache = {};
+async function loadWork(type) {
+  if (workCache[type]) return workCache[type];
+  try {
+    const res = await fetch(`/_${type}/index.json`);
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    workCache[type] = data.filter(i => i.featured === true || i.featured === 'true').slice(0,5);
+    return workCache[type];
+  } catch { return []; }
+}
+function getYTId(url) { const m=(url||'').match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/); return m?m[1]:null; }
+
+async function renderWorkArtworks() {
+  const items = await loadWork('artworks');
+  const grid = document.getElementById('aw-grid');
+  if (!grid) return;
+  if (!items.length) { grid.innerHTML = `<div class="col-span-3 text-center py-12 text-brand-muted text-sm"><i class="ti ti-photo-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เปิด "แสดงหน้าหลัก" ใน <a href="/admin/#/collections/artworks" class="text-brand-light underline">Admin</a></div>`; return; }
+  grid.innerHTML = items.map((item,i) => `
+    <div class="group relative ${i===1?'md:col-span-2':''} aspect-square bg-brand-card rounded-2xl overflow-hidden border border-brand-border cursor-pointer" onclick="location.href='artwork.html'">
+      <img src="${item.image||''}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+        <span class="text-brand-light font-mono text-xs mb-1">${item.category||''}</span>
+        <h3 class="text-white font-medium text-sm">${item.title}</h3>
+      </div>
+    </div>`).join('');
+}
+
+async function renderWorkVideos() {
+  const items = await loadWork('videos');
+  const grid = document.getElementById('vid-grid');
+  if (!grid) return;
+  if (!items.length) { grid.innerHTML = `<div class="col-span-2 text-center py-12 text-brand-muted text-sm"><i class="ti ti-video-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เปิด "แสดงหน้าหลัก" ใน <a href="/admin/#/collections/videos" class="text-brand-light underline">Admin</a></div>`; return; }
+  grid.innerHTML = items.map(item => {
+    const ytId = getYTId(item.video_url||'');
+    const thumb = item.thumbnail||(ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:'');
+    return `<div class="group cursor-pointer" onclick="location.href='video.html'">
+      <div class="relative aspect-video bg-brand-card rounded-2xl overflow-hidden border border-brand-border mb-3">
+        <img src="${thumb}" alt="${item.title}" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-500">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-14 h-14 bg-brand-primary/90 text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <i class="ti ti-player-play-filled text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <h3 class="font-semibold group-hover:text-brand-light transition-colors">${item.title}</h3>
+      ${item.category?`<p class="text-brand-muted text-sm mt-1">${item.category}</p>`:''}
+    </div>`;
+  }).join('');
+}
+
+async function renderWorkSEO() {
+  const items = await loadWork('seo_results');
+  const grid = document.getElementById('seo-grid-home');
+  if (!grid) return;
+  if (!items.length) { grid.innerHTML = `<div class="col-span-3 text-center py-12 text-brand-muted text-sm"><i class="ti ti-chart-bar-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เปิด "แสดงหน้าหลัก" ใน <a href="/admin/#/collections/seo_results" class="text-brand-light underline">Admin</a></div>`; return; }
+  grid.innerHTML = items.map(item => `
+    <div class="bg-[#0d150d] border border-brand-border rounded-2xl p-5 hover:-translate-y-1 transition-transform cursor-pointer" onclick="location.href='seo.html'">
+      <div class="font-mono text-xs text-brand-primary mb-1">// SEO Result</div>
+      <h3 class="text-white font-semibold mb-1">${item.title}</h3>
+      ${item.keyword?`<p class="text-brand-muted text-xs mb-3">Keyword: <span class="text-brand-light">"${item.keyword}"</span></p>`:''}
+      <div class="flex gap-2 mb-3">
+        <div class="bg-brand-card rounded-lg px-3 py-2 text-center flex-1"><div class="font-mono text-sm text-red-400 font-bold">${item.rank_before||'-'}</div><div class="text-xs text-brand-muted">ก่อน</div></div>
+        <div class="flex items-center text-brand-primary text-xs"><i class="ti ti-arrow-right"></i></div>
+        <div class="bg-brand-card rounded-lg px-3 py-2 text-center flex-1"><div class="font-mono text-sm text-brand-light font-bold">${item.rank_after||'-'}</div><div class="text-xs text-brand-muted">หลัง</div></div>
+      </div>
+      ${item.traffic_increase?`<div class="bg-brand-primarybg border border-brand-primary/20 rounded-lg px-3 py-2 text-sm text-brand-light font-mono text-center">${item.traffic_increase} Traffic</div>`:''}
+    </div>`).join('');
+}
+
+function switchWork(type, btn) {
+  document.querySelectorAll('.work-tab').forEach(b => { b.classList.remove('active','bg-brand-primarybg','border-brand-primary/30','text-brand-light'); b.classList.add('border-brand-border','text-brand-muted'); });
+  btn.classList.add('active','bg-brand-primarybg','border-brand-primary/30','text-brand-light');
+  btn.classList.remove('border-brand-border','text-brand-muted');
+  document.querySelectorAll('.work-panel').forEach(p => p.classList.add('hidden'));
+  document.getElementById('work-'+type)?.classList.remove('hidden');
+  if (type==='artworks') renderWorkArtworks();
+  else if (type==='videos') renderWorkVideos();
+  else if (type==='seo') renderWorkSEO();
+}
+
+renderWorkArtworks();
+
+async function applySettings() {
+  try {
+    const res = await fetch('/_data/settings.json');
+    if (!res.ok) return;
+    const s = await res.json();
+
+    // Logo src + size
+    const navLogo = document.getElementById('nav-logo');
+    const footerLogo = document.getElementById('footer-logo');
+    if (s.logo) {
+      if (navLogo) navLogo.src = s.logo;
+      if (footerLogo) footerLogo.src = s.logo;
+    }
+    if (s.logo_size) {
+      const size = parseInt(s.logo_size);
+      if (navLogo) navLogo.style.height = size + 'px';
+      if (footerLogo) footerLogo.style.height = Math.round(size * 0.85) + 'px';
+    }
+
+    // Contact info
+    if (s.email) {
+      const el = document.getElementById('footer-email');
+      if (el) { el.textContent = s.email; el.href = 'mailto:' + s.email; }
+      const btn = document.getElementById('contact-email-btn');
+      if (btn) btn.href = 'mailto:' + s.email;
+    }
+    if (s.tel) {
+      const el = document.getElementById('footer-tel');
+      if (el) { el.textContent = s.tel; el.href = 'tel:' + s.tel.replace(/[^0-9+]/g,''); }
+    }
+    if (s.facebook) {
+      const fb1 = document.getElementById('footer-fb');
+      if (fb1) fb1.href = s.facebook;
+      const fb2 = document.getElementById('contact-fb-btn');
+      if (fb2) fb2.href = s.facebook;
+    }
+    if (s.line_id) {
+      const line = document.getElementById('footer-line');
+      if (line) line.href = 'https://line.me/ti/p/~' + s.line_id;
+    }
+    if (s.site_name) document.title = s.site_name + ' | Digital Marketing & Solution';
+  } catch {}
+}
+applySettings();
 </script>
 </body>
 </html>

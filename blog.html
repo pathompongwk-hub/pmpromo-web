@@ -50,34 +50,25 @@
 
   <!-- Navbar -->
   <nav class="fixed top-0 w-full z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border">
-    <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-      <!-- Logo (Link back to index) -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <img src="Logo4.png" class="h-16" alt="PM Promo logo">
-      </a>
-
-      <!-- Desktop Links -->
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html"><img id="nav-logo" src="Logo4.png" class="h-12" alt="PM Promo"></a>
       <div class="hidden md:flex items-center gap-8 font-mono text-sm text-brand-muted">
-        <a href="index.html#services" class="hover:text-brand-light transition-colors">Services</a>
-        <a href="index.html#work" class="hover:text-brand-light transition-colors">Work</a>
-        <a href="blog.html" class="text-brand-light transition-colors">Blog</a>
+        <a href="artwork.html" class="hover:text-brand-light transition-colors">Artworks</a>
+        <a href="video.html" class="hover:text-brand-light transition-colors">Videos</a>
+        <a href="seo.html" class="hover:text-brand-light transition-colors">SEO Results</a>
+        <a href="index.html#faq" class="hover:text-brand-light transition-colors">FAQ</a>
+        <a href="blog.html" class="text-brand-light">Blog</a>
       </div>
-
-      <!-- CTA -->
       <a href="index.html#contact" class="hidden md:inline-flex bg-brand-primarybg border border-brand-primary/30 text-brand-light px-5 py-2 rounded-lg font-medium hover:bg-brand-primary hover:text-white transition-all duration-300">
         Get in touch <i class="ti ti-arrow-up-right ml-1"></i>
       </a>
-
-      <!-- Mobile Menu Button -->
-      <button class="md:hidden text-brand-text text-2xl">
-        <i class="ti ti-menu-2"></i>
-      </button>
+      <button class="md:hidden text-brand-text text-2xl"><i class="ti ti-menu-2"></i></button>
     </div>
   </nav>
 
-  <main class="pt-20">
+  <main class="pt-16">
     <!-- Blog Header Section -->
-    <section class="relative pt-20 pb-16 px-6 border-b border-brand-border overflow-hidden">
+    <section class="relative pt-16 pb-16 px-6 border-b border-brand-border overflow-hidden">
       <!-- Background Effects -->
       <div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-40 pointer-events-none"></div>
       
@@ -244,15 +235,15 @@
         <!-- Brand Info -->
         <div class="col-span-1 md:col-span-1">
           <a href="index.html" class="flex items-center gap-3 group mb-4">
-            <img src="Logo4.png" class="h-14" alt="PM Promo logo">
+            <img id="footer-logo" src="Logo4.png" class="h-14" alt="PM Promo logo">
           </a>
           <p class="text-brand-muted text-sm leading-relaxed mb-6">
             พันธมิตรด้านการตลาดดิจิทัลของคุณ ผสาน AI, Automation และกลยุทธ์ที่ขับเคลื่อนด้วยข้อมูล เพื่อการเติบโตอย่างยั่งยืน
           </p>
           <div class="flex gap-4">
-            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-facebook"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-instagram"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-line"></i></a>
+            <a id="footer-fb" href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-facebook"></i></a>
+            <a id="footer-ig" href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-instagram"></i></a>
+            <a id="footer-line" href="#" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors"><i class="ti ti-brand-line"></i></a>
           </div>
         </div>
 
@@ -260,9 +251,9 @@
         <div>
           <h4 class="text-white font-semibold mb-4">ผลงานของเรา</h4>
           <ul class="space-y-3">
-            <li><a href="index.html#work-aw" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Artwork & Design</a></li>
-            <li><a href="index.html#work-video" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Video Production</a></li>
-            <li><a href="index.html#work-seo" class="text-brand-muted hover:text-brand-light text-sm transition-colors">SEO Success Stories</a></li>
+            <li><a href="artwork.html" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Artwork & Design</a></li>
+            <li><a href="video.html" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Video Production</a></li>
+            <li><a href="seo.html" class="text-brand-muted hover:text-brand-light text-sm transition-colors">SEO Success Stories</a></li>
             <li><a href="index.html#services" class="text-brand-muted hover:text-brand-light text-sm transition-colors">Content Marketing</a></li>
           </ul>
         </div>
@@ -288,11 +279,11 @@
             </li>
             <li class="flex items-center gap-3">
               <i class="ti ti-mail text-brand-primary"></i>
-              <a href="mailto:hello@pmpromo.com" class="text-brand-muted hover:text-brand-light text-sm transition-colors">hello@pmpromo.com</a>
+              <a id="footer-email" href="mailto:hello@pmpromo.com" class="text-brand-muted hover:text-brand-light text-sm transition-colors">hello@pmpromo.com</a>
             </li>
             <li class="flex items-center gap-3">
               <i class="ti ti-phone text-brand-primary"></i>
-              <a href="tel:+66800000000" class="text-brand-muted hover:text-brand-light text-sm transition-colors">080-000-0000</a>
+              <a id="footer-tel" href="tel:+66800000000" class="text-brand-muted hover:text-brand-light text-sm transition-colors">080-000-0000</a>
             </li>
           </ul>
         </div>
@@ -385,17 +376,38 @@ async function loadBlogPosts() {
   }
 }
 
-async function loadSettings() {
+
+async function applySettings() {
   try {
     const res = await fetch('/_data/settings.json');
     if (!res.ok) return;
     const s = await res.json();
-    if (s.logo) document.querySelectorAll('[data-logo]').forEach(el => el.src = s.logo);
+    const navLogo = document.getElementById('nav-logo');
+    const footerLogo = document.getElementById('footer-logo');
+    if (s.logo) {
+      if (navLogo) navLogo.src = s.logo;
+      if (footerLogo) footerLogo.src = s.logo;
+    }
+    if (s.logo_size) {
+      const size = parseInt(s.logo_size);
+      if (navLogo) navLogo.style.height = size + 'px';
+      if (footerLogo) footerLogo.style.height = Math.round(size * 0.85) + 'px';
+    }
+    if (s.email) {
+      const el = document.getElementById('footer-email');
+      if (el) { el.textContent = s.email; el.href = 'mailto:' + s.email; }
+    }
+    if (s.tel) {
+      const el = document.getElementById('footer-tel');
+      if (el) { el.textContent = s.tel; el.href = 'tel:' + s.tel.replace(/[^0-9+]/g,''); }
+    }
+    if (s.facebook) { const el = document.getElementById('footer-fb'); if (el) el.href = s.facebook; }
+    if (s.line_id) { const el = document.getElementById('footer-line'); if (el) el.href = 'https://line.me/ti/p/~' + s.line_id; }
   } catch {}
 }
 
 loadBlogPosts();
-loadSettings();
+applySettings();
 </script>
 </body>
 </html>
