@@ -140,51 +140,37 @@
     </section>
 
     <!-- Portfolio: Dynamic from CMS -->
+    <!-- Artwork Section -->
     <section id="work-aw" class="py-24 px-6 border-b border-brand-border">
       <div class="max-w-5xl mx-auto">
-        <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Our Work</div>
-        <div class="flex items-end justify-between mb-12 flex-wrap gap-4">
-          <h2 class="text-3xl md:text-4xl font-bold">ผลงานที่เลือกแล้ว</h2>
-          <div class="flex gap-2" id="work-tabs">
-            <button onclick="switchWork('artworks',this)" class="work-tab active font-mono text-xs px-4 py-2 rounded-full border border-brand-primary/30 bg-brand-primarybg text-brand-light transition-colors">Artwork</button>
-            <button onclick="switchWork('videos',this)" class="work-tab font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">Video</button>
-            <button onclick="switchWork('seo',this)" class="work-tab font-mono text-xs px-4 py-2 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary/30 hover:text-brand-light transition-colors">SEO</button>
+        <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Visual Identity</div>
+        <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <h2 class="text-3xl md:text-4xl font-bold">Artwork & Graphic Design</h2>
+          <a href="artwork.html" class="inline-flex items-center gap-2 bg-brand-primarybg border border-brand-primary/30 text-brand-light px-5 py-2.5 rounded-xl font-medium hover:bg-brand-primary hover:text-white transition-all duration-300 font-mono text-sm">
+            ดูทั้งหมด <i class="ti ti-arrow-right"></i>
+          </a>
+        </div>
+        <div id="aw-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div class="col-span-5 text-center py-12 text-brand-muted text-sm">
+            <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Artwork Grid -->
-        <div id="work-artworks" class="work-panel">
-          <div id="aw-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div class="col-span-3 text-center py-12 text-brand-muted text-sm">
-              <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
-            </div>
-          </div>
-          <div class="mt-8 text-right">
-            <a href="artwork.html" class="inline-flex items-center gap-2 font-mono text-sm text-brand-primary hover:text-brand-light transition-colors">ดูทั้งหมด <i class="ti ti-arrow-right"></i></a>
-          </div>
+    <!-- Video Section -->
+    <section id="work-video" class="py-24 px-6 border-b border-brand-border bg-[#030503]">
+      <div class="max-w-5xl mx-auto">
+        <div class="font-mono text-brand-primary text-sm tracking-widest uppercase mb-4">// Motion & Storytelling</div>
+        <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <h2 class="text-3xl md:text-4xl font-bold">ผลงาน Video</h2>
+          <a href="video.html" class="inline-flex items-center gap-2 bg-brand-primarybg border border-brand-primary/30 text-brand-light px-5 py-2.5 rounded-xl font-medium hover:bg-brand-primary hover:text-white transition-all duration-300 font-mono text-sm">
+            ดูทั้งหมด <i class="ti ti-arrow-right"></i>
+          </a>
         </div>
-
-        <!-- Video Grid -->
-        <div id="work-videos" class="work-panel hidden">
-          <div id="vid-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div class="col-span-2 text-center py-12 text-brand-muted text-sm">
-              <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
-            </div>
-          </div>
-          <div class="mt-8 text-right">
-            <a href="video.html" class="inline-flex items-center gap-2 font-mono text-sm text-brand-primary hover:text-brand-light transition-colors">ดูทั้งหมด <i class="ti ti-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- SEO Grid -->
-        <div id="work-seo" class="work-panel hidden">
-          <div id="seo-grid-home" class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div class="col-span-3 text-center py-12 text-brand-muted text-sm">
-              <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
-            </div>
-          </div>
-          <div class="mt-8 text-right">
-            <a href="seo.html" class="inline-flex items-center gap-2 font-mono text-sm text-brand-primary hover:text-brand-light transition-colors">ดูทั้งหมด <i class="ti ti-arrow-right"></i></a>
+        <div id="vid-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="col-span-2 text-center py-12 text-brand-muted text-sm">
+            <i class="ti ti-loader-2 text-2xl animate-spin block mb-2"></i>กำลังโหลด...
           </div>
         </div>
       </div>
@@ -461,43 +447,50 @@ async function loadHomeBlog() {
 loadHomeBlog();
 
 const workCache = {};
-async function loadWork(type) {
-  if (workCache[type]) return workCache[type];
+async function loadWork(type, limit) {
+  const key = type + limit;
+  if (workCache[key]) return workCache[key];
   try {
     const res = await fetch(`/_${type}/index.json`);
     if (!res.ok) throw new Error();
     const data = await res.json();
-    workCache[type] = data.filter(i => i.featured === true || i.featured === 'true').slice(0,5);
-    return workCache[type];
+    workCache[key] = data.slice(0, limit);
+    return workCache[key];
   } catch { return []; }
 }
 function getYTId(url) { const m=(url||'').match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/); return m?m[1]:null; }
 
 async function renderWorkArtworks() {
-  const items = await loadWork('artworks');
+  const items = await loadWork('artworks', 5);
   const grid = document.getElementById('aw-grid');
   if (!grid) return;
-  if (!items.length) { grid.innerHTML = `<div class="col-span-3 text-center py-12 text-brand-muted text-sm"><i class="ti ti-photo-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เปิด "แสดงหน้าหลัก" ใน <a href="/admin/#/collections/artworks" class="text-brand-light underline">Admin</a></div>`; return; }
-  grid.innerHTML = items.map((item,i) => `
-    <div class="group relative ${i===1?'md:col-span-2':''} aspect-square bg-brand-card rounded-2xl overflow-hidden border border-brand-border cursor-pointer" onclick="location.href='artwork.html'">
-      <img src="${item.image||''}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+  if (!items.length) {
+    grid.innerHTML = `<div class="col-span-5 text-center py-12 text-brand-muted text-sm"><i class="ti ti-photo-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เพิ่มได้ที่ <a href="/admin/#/collections/artworks" class="text-brand-light underline">Admin</a></div>`;
+    return;
+  }
+  grid.innerHTML = items.map(item => `
+    <a href="artwork.html" class="group relative aspect-square bg-brand-card rounded-2xl overflow-hidden border border-brand-border hover:border-brand-primary/40 transition-all duration-300">
+      <img src="${item.image||''}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" onerror="this.parentElement.style.background='#162016'">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
         <span class="text-brand-light font-mono text-xs mb-1">${item.category||''}</span>
-        <h3 class="text-white font-medium text-sm">${item.title}</h3>
+        <h3 class="text-white font-medium text-sm leading-snug">${item.title}</h3>
       </div>
-    </div>`).join('');
+    </a>`).join('');
 }
 
 async function renderWorkVideos() {
-  const items = await loadWork('videos');
+  const items = await loadWork('videos', 4);
   const grid = document.getElementById('vid-grid');
   if (!grid) return;
-  if (!items.length) { grid.innerHTML = `<div class="col-span-2 text-center py-12 text-brand-muted text-sm"><i class="ti ti-video-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เปิด "แสดงหน้าหลัก" ใน <a href="/admin/#/collections/videos" class="text-brand-light underline">Admin</a></div>`; return; }
+  if (!items.length) {
+    grid.innerHTML = `<div class="col-span-2 text-center py-12 text-brand-muted text-sm"><i class="ti ti-video-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เพิ่มได้ที่ <a href="/admin/#/collections/videos" class="text-brand-light underline">Admin</a></div>`;
+    return;
+  }
   grid.innerHTML = items.map(item => {
     const ytId = getYTId(item.video_url||'');
-    const thumb = item.thumbnail||(ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:'');
-    return `<div class="group cursor-pointer" onclick="location.href='video.html'">
-      <div class="relative aspect-video bg-brand-card rounded-2xl overflow-hidden border border-brand-border mb-3">
+    const thumb = item.thumbnail||(ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&auto=format&fit=crop');
+    return `<a href="video.html" class="group block">
+      <div class="relative aspect-video bg-brand-card rounded-2xl overflow-hidden border border-brand-border mb-3 hover:border-brand-primary/40 transition-all duration-300">
         <img src="${thumb}" alt="${item.title}" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-500">
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="w-14 h-14 bg-brand-primary/90 text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -507,41 +500,12 @@ async function renderWorkVideos() {
       </div>
       <h3 class="font-semibold group-hover:text-brand-light transition-colors">${item.title}</h3>
       ${item.category?`<p class="text-brand-muted text-sm mt-1">${item.category}</p>`:''}
-    </div>`;
+    </a>`;
   }).join('');
 }
 
-async function renderWorkSEO() {
-  const items = await loadWork('seo_results');
-  const grid = document.getElementById('seo-grid-home');
-  if (!grid) return;
-  if (!items.length) { grid.innerHTML = `<div class="col-span-3 text-center py-12 text-brand-muted text-sm"><i class="ti ti-chart-bar-off text-2xl mb-2 block"></i>ยังไม่มีผลงาน — เปิด "แสดงหน้าหลัก" ใน <a href="/admin/#/collections/seo_results" class="text-brand-light underline">Admin</a></div>`; return; }
-  grid.innerHTML = items.map(item => `
-    <div class="bg-[#0d150d] border border-brand-border rounded-2xl p-5 hover:-translate-y-1 transition-transform cursor-pointer" onclick="location.href='seo.html'">
-      <div class="font-mono text-xs text-brand-primary mb-1">// SEO Result</div>
-      <h3 class="text-white font-semibold mb-1">${item.title}</h3>
-      ${item.keyword?`<p class="text-brand-muted text-xs mb-3">Keyword: <span class="text-brand-light">"${item.keyword}"</span></p>`:''}
-      <div class="flex gap-2 mb-3">
-        <div class="bg-brand-card rounded-lg px-3 py-2 text-center flex-1"><div class="font-mono text-sm text-red-400 font-bold">${item.rank_before||'-'}</div><div class="text-xs text-brand-muted">ก่อน</div></div>
-        <div class="flex items-center text-brand-primary text-xs"><i class="ti ti-arrow-right"></i></div>
-        <div class="bg-brand-card rounded-lg px-3 py-2 text-center flex-1"><div class="font-mono text-sm text-brand-light font-bold">${item.rank_after||'-'}</div><div class="text-xs text-brand-muted">หลัง</div></div>
-      </div>
-      ${item.traffic_increase?`<div class="bg-brand-primarybg border border-brand-primary/20 rounded-lg px-3 py-2 text-sm text-brand-light font-mono text-center">${item.traffic_increase} Traffic</div>`:''}
-    </div>`).join('');
-}
-
-function switchWork(type, btn) {
-  document.querySelectorAll('.work-tab').forEach(b => { b.classList.remove('active','bg-brand-primarybg','border-brand-primary/30','text-brand-light'); b.classList.add('border-brand-border','text-brand-muted'); });
-  btn.classList.add('active','bg-brand-primarybg','border-brand-primary/30','text-brand-light');
-  btn.classList.remove('border-brand-border','text-brand-muted');
-  document.querySelectorAll('.work-panel').forEach(p => p.classList.add('hidden'));
-  document.getElementById('work-'+type)?.classList.remove('hidden');
-  if (type==='artworks') renderWorkArtworks();
-  else if (type==='videos') renderWorkVideos();
-  else if (type==='seo') renderWorkSEO();
-}
-
 renderWorkArtworks();
+renderWorkVideos();
 
 async function applySettings() {
   try {
