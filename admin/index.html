@@ -1,12 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PM Promo Admin</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.registerAuthProvider({
+      name: 'github',
+      auth: function() {
+        return new Promise(function(resolve, reject) {
+          var popup = window.open(
+            '/auth',
+            'github-auth',
+            'width=600,height=700'
+          );
+          window.addEventListener('message', function(e) {
+            if (e.data && typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
+              var data = JSON.parse(e.data.split('authorization:github:success:')[1]);
+              resolve(data);
+            }
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
