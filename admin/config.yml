@@ -3,7 +3,7 @@ backend:
   repo: pathompongwk-hub/pmpromo-web
   branch: main
   base_url: https://pmpromo-web.pathompong-wk.workers.dev
-  auth_endpoint: /callback
+  auth_endpoint: /auth
 
 media_folder: "images"
 public_folder: "/images"
