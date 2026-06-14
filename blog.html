@@ -310,19 +310,21 @@ function formatDate(dateStr) {
 }
 
 function renderPost(p) {
+  const url = p.slug ? `post.html?slug=${p.slug}` : '#';
   return `
-    <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300">
+    <article class="group bg-[#0a110a] border border-brand-border rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300 cursor-pointer" onclick="location.href='${url}'">
       <div class="aspect-[16/9] overflow-hidden relative">
-        <img src="${p.thumbnail||DEFAULT_IMG}" alt="${p.title}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" onerror="this.src='${DEFAULT_IMG}'">
+        <img src="${p.thumbnail||DEFAULT_IMG}" alt="${p.alt_text||p.title}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" onerror="this.src='${DEFAULT_IMG}'">
         <div class="absolute top-4 left-4 bg-black/60 border border-[#162016] text-[#4a7a46] px-2.5 py-1 rounded font-mono text-[10px] uppercase backdrop-blur-md">${p.category||'บทความ'}</div>
       </div>
       <div class="p-6">
         <div class="font-mono text-xs text-brand-muted mb-3">${formatDate(p.date)} · ${p.readtime||''}</div>
         <h4 class="text-lg font-semibold mb-3 group-hover:text-brand-light transition-colors">${p.title}</h4>
         <p class="text-brand-muted text-sm line-clamp-2 mb-4">${p.description||p.body?.replace(/[#*`]/g,'').substring(0,120)||''}</p>
-        <span class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors cursor-pointer">Read more //</span>
+        <a href="${url}" class="text-sm font-mono text-brand-primary hover:text-brand-light transition-colors">Read more //</a>
       </div>
     </article>`;
+}
 }
 
 async function loadBlogPosts() {

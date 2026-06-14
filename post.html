@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading... — PM Promo</title>
+<meta name="description" content="">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/png" href="Logo4.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans:['Kanit','sans-serif'], mono:['Space Mono','monospace'] },
+        colors: { brand:{ bg:'#060a06', card:'#080e08', border:'#162016', text:'#e4ede4', muted:'#6e866e', primary:'#3aab22', light:'#6fcc56', primarybg:'rgba(58,171,34,0.10)' } }
+      }
+    }
+  }
+</script>
+<style>
+  .prose h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #162016; }
+  .prose h3 { font-size: 1.2rem; font-weight: 600; color: #e4ede4; margin: 1.5rem 0 0.75rem; }
+  .prose p { color: #6e866e; line-height: 1.8; margin-bottom: 1rem; }
+  .prose strong { color: #e4ede4; font-weight: 600; }
+  .prose ul, .prose ol { color: #6e866e; margin: 1rem 0 1rem 1.5rem; line-height: 1.8; }
+  .prose ul { list-style-type: disc; }
+  .prose ol { list-style-type: decimal; }
+  .prose li { margin-bottom: 0.4rem; }
+  .prose a { color: #6fcc56; text-decoration: underline; }
+  .prose a:hover { color: #3aab22; }
+  .prose blockquote { border-left: 3px solid #3aab22; padding-left: 1rem; margin: 1.5rem 0; color: #4a7a46; font-style: italic; }
+  .prose code { background: #0f1a0f; color: #6fcc56; padding: 2px 6px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 0.85em; }
+  .prose pre { background: #0a120a; border: 1px solid #162016; border-radius: 12px; padding: 1rem; overflow-x: auto; margin: 1.5rem 0; }
+  .prose pre code { background: none; padding: 0; }
+  .prose img { border-radius: 12px; width: 100%; margin: 1.5rem 0; }
+  .prose hr { border-color: #162016; margin: 2rem 0; }
+</style>
+</head>
+<body class="bg-brand-bg text-brand-text font-sans antialiased">
+
+<nav class="fixed top-0 w-full z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html"><img id="nav-logo" src="Logo4.png" class="h-12" alt="PM Promo"></a>
+    <div class="hidden md:flex items-center gap-8 font-mono text-sm text-brand-muted">
+      <a href="artwork.html" class="hover:text-brand-light transition-colors">Artworks</a>
+      <a href="video.html" class="hover:text-brand-light transition-colors">Videos</a>
+      <a href="seo.html" class="hover:text-brand-light transition-colors">SEO Results</a>
+      <a href="index.html#faq" class="hover:text-brand-light transition-colors">FAQ</a>
+      <a href="blog.html" class="text-brand-light">Blog</a>
+    </div>
+    <a href="index.html#contact" class="hidden md:inline-flex bg-brand-primarybg border border-brand-primary/30 text-brand-light px-5 py-2 rounded-lg font-medium hover:bg-brand-primary hover:text-white transition-all duration-300">
+      Get in touch <i class="ti ti-arrow-up-right ml-1"></i>
+    </a>
+  </div>
+</nav>
+
+<main class="pt-16">
+  <!-- Loading State -->
+  <div id="loading" class="min-h-screen flex items-center justify-center">
+    <div class="text-center">
+      <i class="ti ti-loader-2 text-4xl text-brand-primary animate-spin block mb-4"></i>
+      <p class="text-brand-muted font-mono text-sm">กำลังโหลดบทความ...</p>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div id="error" class="hidden min-h-screen flex items-center justify-center">
+    <div class="text-center">
+      <i class="ti ti-file-off text-5xl text-brand-muted block mb-4"></i>
+      <h2 class="text-2xl font-bold text-white mb-2">ไม่พบบทความ</h2>
+      <p class="text-brand-muted mb-6">บทความที่คุณค้นหาอาจถูกลบหรือ URL ไม่ถูกต้อง</p>
+      <a href="blog.html" class="inline-flex items-center gap-2 bg-brand-primarybg border border-brand-primary/30 text-brand-light px-6 py-3 rounded-xl hover:bg-brand-primary hover:text-white transition-all duration-300">
+        <i class="ti ti-arrow-left"></i> กลับหน้าบทความ
+      </a>
+    </div>
+  </div>
+
+  <!-- Article Content -->
+  <article id="article" class="hidden">
+    <!-- Hero -->
+    <div class="relative border-b border-brand-border overflow-hidden">
+      <div id="hero-img-wrap" class="hidden relative h-72 md:h-96">
+        <img id="hero-img" src="" alt="" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-bg/60 to-transparent"></div>
+      </div>
+      <div class="max-w-3xl mx-auto px-6 py-16 relative z-10">
+        <div class="flex items-center gap-3 mb-6 flex-wrap">
+          <a href="blog.html" class="font-mono text-xs text-brand-muted hover:text-brand-light transition-colors flex items-center gap-1">
+            <i class="ti ti-arrow-left"></i> บทความทั้งหมด
+          </a>
+          <span class="text-brand-border">·</span>
+          <span id="article-category" class="text-xs font-mono text-brand-primary bg-brand-primarybg border border-brand-primary/20 px-2 py-1 rounded uppercase tracking-wider"></span>
+        </div>
+        <h1 id="article-title" class="text-3xl md:text-5xl font-bold text-white leading-tight mb-6"></h1>
+        <div class="flex items-center gap-4 text-brand-muted font-mono text-sm flex-wrap">
+          <span class="flex items-center gap-1"><i class="ti ti-calendar text-brand-primary"></i> <span id="article-date"></span></span>
+          <span class="flex items-center gap-1"><i class="ti ti-clock text-brand-primary"></i> <span id="article-readtime"></span></span>
+          <span class="flex items-center gap-1"><i class="ti ti-brand-google text-brand-primary"></i> PM Promo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="max-w-3xl mx-auto px-6 py-12">
+      <div id="article-body" class="prose max-w-none"></div>
+
+      <!-- Tags / Share -->
+      <div class="mt-16 pt-8 border-t border-brand-border">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <a href="blog.html" class="inline-flex items-center gap-2 text-brand-muted hover:text-brand-light transition-colors font-mono text-sm">
+            <i class="ti ti-arrow-left"></i> กลับหน้าบทความ
+          </a>
+          <div class="flex items-center gap-3">
+            <span class="text-brand-muted text-sm font-mono">แชร์:</span>
+            <button onclick="shareArticle('facebook')" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-[#1877F2] hover:border-[#1877F2] transition-colors">
+              <i class="ti ti-brand-facebook text-sm"></i>
+            </button>
+            <button onclick="shareArticle('twitter')" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-white hover:border-white transition-colors">
+              <i class="ti ti-brand-x text-sm"></i>
+            </button>
+            <button onclick="copyLink()" class="w-8 h-8 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-light hover:border-brand-primary transition-colors">
+              <i class="ti ti-link text-sm"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Posts -->
+      <div class="mt-16">
+        <h3 class="text-xl font-bold text-white mb-6">บทความที่เกี่ยวข้อง</h3>
+        <div id="related-posts" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 bg-brand-card border border-brand-border rounded-2xl p-8 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(58,171,34,0.08)_0%,transparent_70%)]"></div>
+        <div class="relative z-10">
+          <div class="font-mono text-brand-primary text-xs tracking-widest uppercase mb-3">// ปรึกษาฟรี</div>
+          <h3 class="text-2xl font-bold text-white mb-3">อยากได้ผลลัพธ์แบบนี้?</h3>
+          <p class="text-brand-muted mb-6">PM Promo พร้อมช่วยธุรกิจของคุณเติบโตด้วย Digital Marketing ที่วัดผลได้จริง</p>
+          <a href="index.html#contact" class="inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-light transition-colors">
+            ติดต่อเราเลย <i class="ti ti-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="border-t border-brand-border py-8 px-6 text-center text-brand-muted font-mono text-xs">
+  © 2025 PM Promo Marketing. All rights reserved. |
+  <a href="blog.html" class="hover:text-brand-light transition-colors ml-2">กลับหน้าบทความ</a>
+</footer>
+
+<script>
+function formatDate(dateStr) {
+  try {
+    return new Date(dateStr).toLocaleDateString('th-TH', { year:'numeric', month:'long', day:'numeric' });
+  } catch { return dateStr || ''; }
+}
+
+function shareArticle(platform) {
+  const url = encodeURIComponent(window.location.href);
+  const title = encodeURIComponent(document.getElementById('article-title').textContent);
+  if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+  if (platform === 'twitter') window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert('คัดลอก URL แล้ว!');
+}
+
+async function loadPost() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  if (!slug) { showError(); return; }
+
+  try {
+    const res = await fetch('/_posts/index.json');
+    if (!res.ok) throw new Error();
+    const posts = await res.json();
+    const post = posts.find(p => p.slug === slug);
+    if (!post) { showError(); return; }
+
+    // Update meta tags
+    document.title = post.title + ' — PM Promo';
+    document.querySelector('meta[name="description"]').content = post.body?.replace(/[#*`\[\]]/g,'').substring(0,160) || '';
+    document.querySelector('meta[property="og:title"]').content = post.title;
+    document.querySelector('meta[property="og:description"]').content = post.body?.replace(/[#*`\[\]]/g,'').substring(0,160) || '';
+    if (post.thumbnail) document.querySelector('meta[property="og:image"]').content = post.thumbnail;
+
+    // Fill content
+    document.getElementById('article-title').textContent = post.title;
+    document.getElementById('article-category').textContent = post.category || 'บทความ';
+    document.getElementById('article-date').textContent = formatDate(post.date);
+    document.getElementById('article-readtime').textContent = post.readtime || '';
+
+    // Hero image
+    if (post.thumbnail) {
+      const wrap = document.getElementById('hero-img-wrap');
+      const img = document.getElementById('hero-img');
+      img.src = post.thumbnail;
+      img.alt = post.alt_text || post.title;
+      wrap.classList.remove('hidden');
+    }
+
+    // Render markdown body
+    if (post.body) {
+      document.getElementById('article-body').innerHTML = marked.parse(post.body);
+    }
+
+    // Related posts
+    const related = posts
+      .filter(p => p.slug !== slug && p.category === post.category)
+      .slice(0, 2);
+    if (related.length) {
+      document.getElementById('related-posts').innerHTML = related.map(p => `
+        <a href="post.html?slug=${p.slug}" class="group bg-brand-card border border-brand-border rounded-xl p-5 hover:border-brand-primary/40 transition-all duration-300 block">
+          <span class="text-xs font-mono text-brand-primary">${p.category||''}</span>
+          <h4 class="text-brand-text font-semibold mt-2 mb-2 group-hover:text-brand-light transition-colors leading-snug">${p.title}</h4>
+          <p class="text-brand-muted text-sm">${formatDate(p.date)}</p>
+        </a>`).join('');
+    }
+
+    // Show article
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('article').classList.remove('hidden');
+
+  } catch(e) {
+    showError();
+  }
+}
+
+function showError() {
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('error').classList.remove('hidden');
+}
+
+async function applySettings() {
+  try {
+    const res = await fetch('/_data/settings.json');
+    if (!res.ok) return;
+    const s = await res.json();
+    if (s.logo) { const el = document.getElementById('nav-logo'); if(el) el.src = s.logo; }
+  } catch {}
+}
+
+loadPost();
+applySettings();
+</script>
+</body>
+</html>
